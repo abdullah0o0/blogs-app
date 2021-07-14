@@ -1,25 +1,25 @@
 const express=require("express")
 require("./mongooseConnection")
 const {port} = require('./config/env')
+const core = require('./middleware/security')
+const errorsHandler = require('./middleware/errors')
+const usersRouter = require('./routes/users')
+
 //create express server
 const app = express()
+app.use(core)
+
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
 
 
+//routes
+app.use("/api/v1/users",usersRouter)
 
 
-// 404 page not found middleware
-app.use((req,res,next)=>{
-   /*  let err = new Error("page not found") */
-   /*  err.status=404; */
-/*  let err = new createError.NotFound() */
-    let err = createError(404,"page not found") 
-    next(err)
-})
 
 //error handling middleware/ universal error handler
-app.use((err,req,res,next)=>{
-    res.status(err.status || 500).send({success:false, message:err.message})
-})
+app.use(errorsHandler)
 
 
 // to listen to the server   app.listen(port,()=>{})
