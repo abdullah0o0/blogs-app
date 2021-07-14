@@ -1,6 +1,6 @@
 const express=require("express")
 require("./mongooseConnection")
-const port = require('./config/env').port
+const {port} = require('./config/env')
 //create express server
 const app = express()
 
@@ -22,5 +22,6 @@ app.use((err,req,res,next)=>{
 })
 
 
-
+// to listen to the server   app.listen(port,()=>{})
 app.listen(port, ()=>console.log("express server is running on port: ",port))
+
