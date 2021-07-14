@@ -1,29 +1,29 @@
 import React from "react";
 
-export default function Signin() {
-    const submitHandler = (e) =>{
-        e.preventDefault()
-        const email = e.target.email.value;
-        const password = e.target.password.value;
+export default function SiginIn() {
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const data = {
+      email,
+      password,
+    };
 
-        const data = {
-            email,
-            password
-        }
-        console.log('sign in data =>', data);
+    console.log("Sign In data => ", data);
 
-        // POST req ==> http:localhost:5000/api/v1/signin
-    }
+    // POST req ===> http://localhost:5000/api/v1/signin
+  };
   return (
-    <div>
-        <h1>Login</h1>
+    <div className="container">
+      <h1>Login</h1>
       <form onSubmit={submitHandler}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
           <input
-          name='email'
+            name="email"
             type="email"
             className="form-control"
             id="exampleInputEmail1"
@@ -38,12 +38,13 @@ export default function Signin() {
             Password
           </label>
           <input
-          name='password'
+            name="password"
             type="password"
             className="form-control"
             id="exampleInputPassword1"
           />
         </div>
+
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
